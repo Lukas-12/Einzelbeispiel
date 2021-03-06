@@ -10,7 +10,6 @@ public class TCPClient {
     public static void main(String[] args)throws Exception {
         int clientMatNr;
 
-        BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
         Socket clientSocket = new Socket("se2-isys.aau.at",53212);
         DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));

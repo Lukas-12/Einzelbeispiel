@@ -6,11 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <Button
         android:id="@+id/Abschicken"
         android:layout_width="172dp"
         android:layout_height="65dp"
         android:layout_marginBottom="80dp"
+        android:onClick="klick"
+        android:text="Abschicken"
+        android:textSize="18sp"
         app:iconTint="#5E2F2F"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,47 +28,40 @@
         android:id="@+id/matNr"
         android:layout_width="333dp"
         android:layout_height="56dp"
+        android:background="#FFFFFF"
         android:text="Gib deine Matrikelnummer ein"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/eingabe"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.134"
+        app:layout_constraintVertical_bias="0.452"
         tools:text="Gib deine Matrikelnummer ein" />
-
 
     <EditText
         android:id="@+id/eingabe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.244" />
+        app:layout_constraintVertical_bias="0.291" />
 
     <TextView
         android:id="@+id/serverAntwort"
         android:layout_width="151dp"
         android:layout_height="35dp"
-        app:layout_constraintBottom_toTopOf="@+id/output"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eingabe"
-        tools:text="Antwort vom Server" />
-
-    <TextView
-        android:id="@+id/output"
-        android:layout_width="113dp"
-        android:layout_height="54dp"
-        android:text="Output"
+        android:layout_marginTop="116dp"
         app:layout_constraintBottom_toTopOf="@+id/Abschicken"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eingabe"
-        app:layout_constraintVertical_bias="0.705" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="Antwort vom Server" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
