@@ -5,13 +5,19 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
-public class PrimeRun implements Runnable {
+public class PrimeRun extends Thread implements Runnable {
+
+    public String getMessage() {
+
+        return message;
+    }
 
     public String getMatNr() {
         return matNr;
     }
 
     String matNr;
+    String message;
 
     PrimeRun(String matNr){
         this.matNr = matNr;
@@ -24,8 +30,8 @@ public class PrimeRun implements Runnable {
             Socket clientSocket = new Socket("se2-isys.aau.at", 53212);
             DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
             BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            matNr = inFromServer.readLine();
-            outToServer.writeBytes(matNr);
+            outToServer.writeBytes(matNr +'\n');
+            message = inFromServer.readLine();
             clientSocket.close();
         }catch (Exception e){
             e.getMessage();

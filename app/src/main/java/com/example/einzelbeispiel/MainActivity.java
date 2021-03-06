@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     Button btn;
     EditText txt;
     TextView answer;
+    String serverString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +31,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String number=txt.getText().toString();
+                PrimeRun primeRun = new PrimeRun(number);
+                new Thread(primeRun).start();
+
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                serverString = primeRun.getMessage();
                 Integer newNumber = Integer.parseInt(number);
                 String output = newNumber.toString();
-                answer.setText(output);
+                answer.setText(serverString);
 
             }
 
