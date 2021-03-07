@@ -5,7 +5,7 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
-public class PrimeRun extends Thread implements Runnable {
+public class ServerConnection extends Thread implements Runnable {
 
     public String getMessage() {
 
@@ -19,7 +19,7 @@ public class PrimeRun extends Thread implements Runnable {
     String matNr;
     String message;
 
-    PrimeRun(String matNr){
+    ServerConnection(String matNr){
         this.matNr = matNr;
     }
 

@@ -3,18 +3,20 @@ package com.example.einzelbeispiel;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     Button btn;
     EditText txt;
     TextView answer;
     String serverString;
+    Button btnCalc;
+    String matNr;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +28,13 @@ public class MainActivity extends AppCompatActivity {
         btn = findViewById(R.id.Abschicken);
         txt = findViewById(R.id.eingabe);
         answer = findViewById(R.id.serverAntwort);
+        btnCalc = findViewById(R.id.Berrechnen);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String number=txt.getText().toString();
-                PrimeRun primeRun = new PrimeRun(number);
+                matNr=txt.getText().toString();
+                ServerConnection primeRun = new ServerConnection(matNr);
                 new Thread(primeRun).start();
 
                 try {
@@ -41,13 +44,30 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 serverString = primeRun.getMessage();
-                Integer newNumber = Integer.parseInt(number);
-                String output = newNumber.toString();
                 answer.setText(serverString);
+                if(serverString.equals("Dies ist keine gueltige Matrikelnummer") ){
+                    matNr = "-1";
+                }
 
             }
 
             });
+
+        btnCalc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(matNr == null){
+                    answer.setText("Bitte zuerst auf Abschicken klicken!");
+                }
+                else if(matNr.contains("-1")){
+                    answer.setText("Bitte gueltige Matrikelnummer eingeben");
+                }
+
+
+            }
+
+        });
+
 
     }
 }
