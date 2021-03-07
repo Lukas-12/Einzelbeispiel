@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.Collections;
+
 public class MainActivity extends AppCompatActivity {
     Button btn;
     EditText txt;
@@ -15,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     String serverString;
     Button btnCalc;
     String matNr;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
              * Checks the input number and prints a message
              */
             public void onClick(View view) {
+
                 matNr=txt.getText().toString();
                 ServerConnection primeRun = new ServerConnection(matNr);
                 new Thread(primeRun).start();
@@ -48,8 +52,11 @@ public class MainActivity extends AppCompatActivity {
 
                 serverString = primeRun.getMessage();
                 answer.setText(serverString);
+
+
                 if(serverString.equals("Dies ist keine gueltige Matrikelnummer") ){
                     matNr = "-1";
+
                 }
 
             }
@@ -64,7 +71,10 @@ public class MainActivity extends AppCompatActivity {
              * If its possible a String with an new Number will be printed
              */
             public void onClick(View view) {
-                if(matNr == null){
+                if(matNr == null ){
+                    answer.setText("Bitte zuerst auf Abschicken klicken!");
+                }
+                else if(!matNr.equals(txt.getText().toString())){
                     answer.setText("Bitte zuerst auf Abschicken klicken!");
                 }
                 else if(matNr.contains("-1")){
@@ -119,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
      */
     public char[] sort(char[] toSort){
         char swap;
-
         for(int i=1; i<toSort.length; i++) {
             for(int j=0; j<toSort.length-i; j++) {
                 if(toSort[j]>toSort[j+1]) {
