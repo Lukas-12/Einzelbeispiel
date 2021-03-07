@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 new Thread(primeRun).start();
 
                 try {
-                    Thread.sleep(200);
+                    Thread.sleep(400);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -62,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
                 else if(matNr.contains("-1")){
                     answer.setText("Bitte gueltige Matrikelnummer eingeben");
                 }
+                else{
+                    String newNumber = calc(matNr);
+                    answer.setText(newNumber);
+                }
 
 
             }
@@ -69,6 +73,41 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+    public String calc(String toCalc){
+        StringBuilder even = new StringBuilder();
+        StringBuilder odd = new StringBuilder();
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < toCalc.length(); i++) {
+            if(toCalc.charAt(i) % 2 == 0){
+                even.append(toCalc.charAt(i));
+            }
+            else{
+                odd.append(toCalc.charAt(i));
+            }
+        }
+        char[] one = even.toString().toCharArray();
+        char[] two = odd.toString().toCharArray();
+        one = sort(one);
+        two = sort(two);
+        result.append(one);
+        result.append(two);
+        return result.toString();
+
+    }
+    public char[] sort(char[] toSort){
+        char swap;
+
+        for(int i=1; i<toSort.length; i++) {
+            for(int j=0; j<toSort.length-i; j++) {
+                if(toSort[j]>toSort[j+1]) {
+                    swap=toSort[j];
+                    toSort[j]=toSort[j+1];
+                    toSort[j+1]=swap;
+                }
+            }
+        }
+        return  toSort;
     }
 }
 
