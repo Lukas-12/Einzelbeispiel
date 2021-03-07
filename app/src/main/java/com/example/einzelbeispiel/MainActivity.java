@@ -28,10 +28,15 @@ public class MainActivity extends AppCompatActivity {
         btn = findViewById(R.id.Abschicken);
         txt = findViewById(R.id.eingabe);
         answer = findViewById(R.id.serverAntwort);
-        btnCalc = findViewById(R.id.Berrechnen);
+        btnCalc = findViewById(R.id.Berechnen);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * Button "Abschicken"
+             * Button connect to the Server
+             * Checks the input number and prints a message
+             */
             public void onClick(View view) {
                 matNr=txt.getText().toString();
                 ServerConnection primeRun = new ServerConnection(matNr);
@@ -55,6 +60,11 @@ public class MainActivity extends AppCompatActivity {
 
         btnCalc.setOnClickListener(new View.OnClickListener() {
             @Override
+            /**
+             * Button "Berechnen"
+             * Check if it is possible to click on the "Berechnen" button
+             * If its possible a String with an new Number will be printed
+             */
             public void onClick(View view) {
                 if(matNr == null){
                     answer.setText("Bitte zuerst auf Abschicken klicken!");
@@ -74,6 +84,14 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    /**
+     *  Method who sort a number.
+     *  First even then odd and sorted from low to high.
+     *
+     * @param toCalc: Original Matrikelnummer
+     * @return result: A String with even and odd Sorted
+     */
     public String calc(String toCalc){
         StringBuilder even = new StringBuilder();
         StringBuilder odd = new StringBuilder();
@@ -88,13 +106,17 @@ public class MainActivity extends AppCompatActivity {
         }
         char[] one = even.toString().toCharArray();
         char[] two = odd.toString().toCharArray();
-        one = sort(one);
-        two = sort(two);
-        result.append(one);
-        result.append(two);
+        result.append(sort(one));
+        result.append(sort(two));
         return result.toString();
 
     }
+
+    /**
+     * Classic BubbleSort
+     * @param toSort: a Char Array with Digits
+     * @return toSort: Sorted Char Array
+     */
     public char[] sort(char[] toSort){
         char swap;
 

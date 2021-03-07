@@ -61,10 +61,10 @@
         tools:text="Antwort vom Server" />
 
     <Button
-        android:id="@+id/Berrechnen"
+        android:id="@+id/Berechnen"
         android:layout_width="172dp"
         android:layout_height="65dp"
-        android:text="Berrechnen"
+        android:text="Berechnen"
         android:textSize="18sp"
         app:iconTint="#5E2F2F"
         app:layout_constraintBottom_toTopOf="@+id/Abschicken"
