@@ -16,8 +16,6 @@ public class MainActivity extends AppCompatActivity {
     Button btnCalc;
     String matNr;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,10 +69,12 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if(matNr.contains("-1")){
                     answer.setText("Bitte gueltige Matrikelnummer eingeben");
+                    matNr = null;
                 }
                 else{
                     String newNumber = calc(matNr);
                     answer.setText(newNumber);
+                    matNr = null;
                 }
 
 

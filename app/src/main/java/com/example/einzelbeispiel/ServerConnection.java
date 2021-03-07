@@ -5,17 +5,11 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
+/**
+ * Class to connect to a Server
+ * With input and output
+ */
 public class ServerConnection extends Thread implements Runnable {
-
-    public String getMessage() {
-
-        return message;
-    }
-
-    public String getMatNr() {
-        return matNr;
-    }
-
     String matNr;
     String message;
 
@@ -36,5 +30,13 @@ public class ServerConnection extends Thread implements Runnable {
         }catch (Exception e){
             e.getMessage();
         }
+    }
+    public String getMessage() {
+
+        return message;
+    }
+
+    public String getMatNr() {
+        return matNr;
     }
 }
